@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'customer_id',
         'part_id',
@@ -16,4 +17,8 @@ class Item extends Model
         'qty',
         'job_no',
     ];
+
+    public function logs() {
+        return $this->hasMany(Log::class);
+    }
 }

@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Date;
 
 class LogController extends Controller
 {
-    public function index($cust){
+
+    public function index($cust, Request $request){
         $customer = Customer::where('code', $cust)->first();
-        $logs = Log::where('customer_id', $customer->id)->paginate(10);
+
+        $itemsPerPage = $request->input('itemsPerPage', 10); // Default to 10 if not set
+
+        $logs = Log::where('customer_id', $customer->id)->orderBy('created_at', 'desc')->paginate($itemsPerPage);
         return view('log', compact('logs', 'customer'));
     }
 
@@ -32,6 +36,8 @@ class LogController extends Controller
             "customer_id" => 1,
             "jobno_metindo" => null,
             "jobno_customer" => null,
+            "order_no" => null,
+            "user" => null,
 
         ]);
     }

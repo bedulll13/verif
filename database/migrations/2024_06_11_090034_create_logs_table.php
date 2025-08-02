@@ -25,6 +25,9 @@ return new class extends Migration
             $table->dateTime('my_date');
             $table->string('jobno_metindo')->nullable();
             $table->string('jobno_customer')->nullable();
+            $table->string('order_no')->nullable();
+            $table->string('user')->nullable();
+            $table->string('sequence')->nullable();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

@@ -10,4 +10,12 @@ class Log extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function item() {
+        return $this->belongsTo(Item::class);
+    }
+
+    public function customer() {
+        return $this->belongsTo(Customer::class);
+    }
 }
